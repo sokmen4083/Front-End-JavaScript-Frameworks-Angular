@@ -1,7 +1,7 @@
 {
   "name": "git-test",
   "version": "1.0.0",
-  "description": "\"This is a test director to learn Git and Node",
+  "description": "This is the Git and Node basic learning project",
   "main": "index.html",
   "scripts": {
     "start": "npm run lite",
@@ -10,14 +10,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sokmen4083/Front-End-JavaScript-Frameworks-Angular.git"
+    "url": "git+https://jogesh_k_muppala@bitbucket.org/jogesh_k_muppala/git-test.git"
   },
   "author": "Mehmet Sökmen",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/sokmen4083/Front-End-JavaScript-Frameworks-Angular/issues"
-  },
-  "homepage": "https://github.com/sokmen4083/Front-End-JavaScript-Frameworks-Angular#readme",
+  "homepage": "https://bitbucket.org/jogesh_k_muppala/git-test#readme",
   "devDependencies": {
     "lite-server": "^2.5.4"
   }
