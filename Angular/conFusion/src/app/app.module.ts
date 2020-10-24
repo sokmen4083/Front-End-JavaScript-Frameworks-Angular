@@ -1,13 +1,15 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
+import { HttpModule } from '@angular/http';
 import { MatToolbarModule, MatListModule, MatGridListModule, MatButtonModule, MatCardModule,
   MatDialogModule, MatCheckboxModule, MatFormFieldModule, MatInputModule,
   MatSelectModule, MatSlideToggleModule, MatProgressSpinnerModule, MatSliderModule } from '@angular/material'; 
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms'; 
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+
+import { RestangularModule, Restangular } from 'ngx-restangular';
 
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
@@ -21,10 +23,15 @@ import { ContactComponent } from './contact/contact.component';
 import { DishService } from './services/dish.service';
 import { PromotionService } from './services/promotion.service';
 import { LeaderService } from './services/leader.service';
+import { ProcessHTTPMsgService } from './services/process-httpmsg.service';
+import { FeedbackService } from './services/feedback.service';
+
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { LoginComponent } from './login/login.component';
 
 import { baseURL } from './shared/baseurl';
+import { RestangularConfigFactory } from './shared/restConfig';
+import { HighlightDirective } from './directives/highlight.directive';
 
 @NgModule({
   declarations: [
@@ -36,12 +43,13 @@ import { baseURL } from './shared/baseurl';
     AboutComponent,
     HomeComponent,
     ContactComponent,
-    LoginComponent
+    LoginComponent,
+    HighlightDirective
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule,
-    HttpClientModule,    
+    HttpModule,
+    BrowserAnimationsModule,    
     MatToolbarModule, 
     MatListModule,   
     MatGridListModule, 
@@ -58,13 +66,16 @@ import { baseURL } from './shared/baseurl';
     FormsModule,
     ReactiveFormsModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    RestangularModule.forRoot(RestangularConfigFactory)
   ],
   providers: [
     DishService,
     PromotionService,
     LeaderService,
-    { provide: 'BaseURL', useValue: baseURL }
+    ProcessHTTPMsgService,
+    FeedbackService,
+    {provide: 'BaseURL', useValue: baseURL}
   ],
   entryComponents: [
     LoginComponent
