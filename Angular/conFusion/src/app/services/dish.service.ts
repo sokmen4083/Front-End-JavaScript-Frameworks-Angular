@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Dish } from '../shared/dish';
 import { Observable } from 'rxjs/Observable';
-import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { baseURL } from '../shared/baseurl';
+import { map } from 'rxjs/operators';
+
 
 
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/delay';
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class DishService {
@@ -23,11 +25,10 @@ export class DishService {
   }
 
   getFeaturedDish(): Observable<Dish> {
-    return this.http.get<Dish[]>(baseURL + 'dishes?featured=true')
-      .pipe(map(dishes => dishes[0]));
+    return this.http.get<Dish[]>(baseURL + 'dishes?featured=true').pipe(map(dishes => dishes[0]));
   }
 
-  getDishIds(): Observable<number[] | any> {
-    return this.getDishes().pipe(map(dishes => dishes.map(dish => dish.id)));
+  getDishIds(): Observable<string[] | any> {
+    return this.getDishes().pipe(map(dishes => {dishes.map(dish => dish.id)}));
   }
 }
